@@ -1,0 +1,59 @@
+<div class="text-primary text-center my-5">
+    <h4>{{title}}</h4>
+</div>
+<table class="table table-hover table-bordered mt-3" *ngIf="!isUpdating">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone number</th>
+            <th>Job Title</th>
+            <th>Company</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody *ngIf="contacts.length === 0">
+        <tr>
+            <td colspan="4">There are no contacts in the DB. Add a new contact above.</td>
+        </tr>
+    </tbody>
+    <tbody>
+        <tr *ngFor="let c of contacts">
+            <td>{{c.name}}</td>
+            <td>{{c.email}}</td>
+            <td>{{c.phone}}</td>
+            <td>{{c.jobtitle}}</td>
+            <td>{{c.company}}</td>
+            <td><button class="btn btn-sm btn-primary" (click)="enableUpdating(c)">
+                    <i class="fa fa-pencil"></i>Edit
+                </button>
+                <button class="btn btn-sm btn-danger ml-1 mt-1 mt-md-0" (click)="deleteContact(c)">
+                    <i class="fa fa-trash"></i>Delete
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <form *ngIf="isUpdating" class="form-inline" #form="ngForm" (ngSubmit)="updateContact(contact)">
+            <input class="form-control m-2" type="text" name="name" [(ngModel)]="contact.name"
+                placeholder="Contact Name" required><br><br>
+            <input class="form-control m-2" type="text" name="email"
+                [(ngModel)]="contact.email" placeholder="email" required><br><br>
+            <input class="form-control m-2" type="number" name="phone"
+                [(ngModel)]="contact.phone" placeholder="Phone number" required><br><br>
+            <input class="form-control m-2" type="text" name="jobtitle"
+                [(ngModel)]="contact.jobtitle" placeholder="Job Title" required><br><br>
+            <input class="form-control m-2" type="text" name="company"
+                [(ngModel)]="contact.company" placeholder="Company" required> <br><br><br><br>
+            <button class="btn btn-sm btn-primary ml-4" type="submit" [disabled]="!form.form.valid">
+                <i class="fa fa-floppy-o"></i> Save
+            </button>
+            <button class="btn btn-sm btn-warning ml-4" (click)="cancelUpdating()">
+                <i class="fa fa-times"></i> Cancel
+            </button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mx-auto p-4 border">
+            <div class="text-center my-2 py-3 bg-info rounded text-white"><h4>Add Contacts</h4></div>
+
+    <div class="mt-4">
+        <form [formGroup]="myReactiveForm" (ngSubmit)="submitAddContactForm()">
+            <div class="form-group">
+                <label for="name">Contact Name*</label>
+                <input type="text" formControlName="name" id="name" class="form-control">
+                <small *ngIf="!myReactiveForm.get('name').valid && myReactiveForm.get('name').touched" class="text-danger">Contact Name Required!</small>
+            </div>
+            <div class="form-group">
+                <label for="email">Contact Email*</label>
+                <input type="text" formControlName="email" id="email" class="form-control">
+                <small *ngIf="!myReactiveForm.get('email').valid && myReactiveForm.get('email').touched" class="text-danger">Contact Email Required!</small>
+            </div>
+            <div class="form-group">
+                <label for="phone">Contact Number*</label>
+                <input type="number" formControlName="phone" id="phone" class="form-control">
+                <small *ngIf="!myReactiveForm.get('phone').valid && myReactiveForm.get('phone').touched" class="text-danger">Contact Phone Required!</small>
+            </div>
+            <div class="form-group">
+                <label for="jobtitle">Job Title*</label>
+                <input type="text" formControlName="jobtitle" id="jobtitle" class="form-control">
+                <small *ngIf="!myReactiveForm.get('jobtitle').valid && myReactiveForm.get('jobtitle').touched" class="text-danger"> Job Title Required!</small>
+            </div>
+            <div class="form-group">
+                <label for="company">Company*</label>
+                <input type="text" formControlName="company" id="company" class="form-control">
+                <small *ngIf="!myReactiveForm.get('company').valid && myReactiveForm.get('company').touched" class="text-danger"> Company Required!</small>
+            </div>
+            <button class="btn btn-success" type="submit" [disabled]="!myReactiveForm.valid">Add</button>
+        </form>
+    </div>
+        </div>
+    </div>
+
+</div>
